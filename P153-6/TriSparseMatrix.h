@@ -1,49 +1,53 @@
 #ifndef __TRI_SPARSE_MATRIX_H__
 #define __TRI_SPARSE_MATRIX_H__
 
-#include "Assistance.h"				// è¾…åŠ©è½¯ä»¶åŒ…
-#include "triple.h"					// ä¸‰å…ƒç»„ç±»
+#include "Assistance.h"				// ¸¨ÖúÈí¼ş°ü
+#include "triple.h"					// ÈıÔª×éÀà
 
-// ç¨€ç–çŸ©é˜µä¸‰å…ƒç»„é¡ºåºè¡¨ç±»
+// Ï¡Êè¾ØÕóÈıÔª×éË³Ğò±íÀà
 template<class ElemType>
 class TriSparseMatrix
 {
 protected:
-// ç¨€ç–çŸ©é˜µä¸‰å…ƒç»„é¡ºåºè¡¨çš„æ•°æ®æˆå‘˜:
-	Triple<ElemType> *triElems;		// å­˜å‚¨ç¨€ç–çŸ©é˜µçš„ä¸‰å…ƒç»„è¡¨
-	int maxSize;					// éé›¶å…ƒç´ æœ€å¤§ä¸ªæ•°
-	int rows, cols, num;			// ç¨€ç–çŸ©é˜µçš„è¡Œæ•°,åˆ—æ•°åŠéé›¶å…ƒä¸ªæ•°
+// Ï¡Êè¾ØÕóÈıÔª×éË³Ğò±íµÄÊı¾İ³ÉÔ±:
+	Triple<ElemType> *triElems;		// ´æ´¢Ï¡Êè¾ØÕóµÄÈıÔª×é±í
+	int maxSize;					// ·ÇÁãÔªËØ×î´ó¸öÊı
+	int rows, cols, num;			// Ï¡Êè¾ØÕóµÄĞĞÊı,ÁĞÊı¼°·ÇÁãÔª¸öÊı
 
 public:
-// ç¨€ç–çŸ©é˜µä¸‰å…ƒç»„é¡ºåºè¡¨çš„å‡½æ•°æˆå‘˜ï¼š 
+// Ï¡Êè¾ØÕóÈıÔª×éË³Ğò±íµÄº¯Êı³ÉÔ±£º 
 	TriSparseMatrix(int rs = DEFAULT_SIZE, int cs = DEFAULT_SIZE, int size = DEFAULT_SIZE);
-		// æ„é€ ä¸€ä¸ªrsè¡Œcsåˆ—éé›¶å…ƒç´ æœ€å¤§ä¸ªæ•°ä¸ºsizeçš„ç©ºç¨€ç–çŸ©é˜µ
-	~TriSparseMatrix();				// ææ„å‡½æ•°
-    int GetRows() const;			// è¿”å›ç¨€ç–çŸ©é˜µè¡Œæ•°
-    int GetCols() const;			// è¿”å›ç¨€ç–çŸ©é˜µåˆ—æ•°
-    int GetNum() const;				// è¿”å›ç¨€ç–çŸ©é˜µéé›¶å…ƒä¸ªæ•°
-	Status SetElem(int r, int c, const ElemType &v);	// è®¾ç½®æŒ‡å®šä½ç½®çš„å…ƒç´ å€¼
-	Status GetElem(int r, int c, ElemType &v);			// æ±‚æŒ‡å®šä½ç½®çš„å…ƒç´ å€¼
-	TriSparseMatrix(const TriSparseMatrix<ElemType> &copy);	// å¤åˆ¶æ„é€ å‡½æ•°
+		// ¹¹ÔìÒ»¸örsĞĞcsÁĞ·ÇÁãÔªËØ×î´ó¸öÊıÎªsizeµÄ¿ÕÏ¡Êè¾ØÕó
+	~TriSparseMatrix();				// Îö¹¹º¯Êı
+    int GetRows() const;			// ·µ»ØÏ¡Êè¾ØÕóĞĞÊı
+    int GetCols() const;			// ·µ»ØÏ¡Êè¾ØÕóÁĞÊı
+    int GetNum() const;				// ·µ»ØÏ¡Êè¾ØÕó·ÇÁãÔª¸öÊı
+	Status SetElem(int r, int c, const ElemType &v);	// ÉèÖÃÖ¸¶¨Î»ÖÃµÄÔªËØÖµ
+	Status GetElem(int r, int c, ElemType &v);			// ÇóÖ¸¶¨Î»ÖÃµÄÔªËØÖµ
+	TriSparseMatrix(const TriSparseMatrix<ElemType> &copy);	// ¸´ÖÆ¹¹Ôìº¯Êı
 	TriSparseMatrix<ElemType> &operator =(const TriSparseMatrix<ElemType> &copy); 
-		// èµ‹å€¼è¿ç®—ç¬¦é‡è½½
-	void SimpleTranspose(TriSparseMatrix<ElemType> &b);// ç¨€ç–çŸ©é˜µçš„ç®€å•è½¬ç½®ç®—æ³•
-	void FastTranspose(TriSparseMatrix<ElemType> &b);// ç¨€ç–çŸ©é˜µçš„å¿«é€Ÿè½¬ç½®ç®—æ³•
+		// ¸³ÖµÔËËã·ûÖØÔØ
+	void SimpleTranspose(TriSparseMatrix<ElemType> &b);// Ï¡Êè¾ØÕóµÄ¼òµ¥×ªÖÃËã·¨
+	void FastTranspose(TriSparseMatrix<ElemType> &b);// Ï¡Êè¾ØÕóµÄ¿ìËÙ×ªÖÃËã·¨
 
-	//ä½œä¸š:é‡è½½è¿ç®—ç¬¦+
+	//×÷Òµ:ÖØÔØÔËËã·û+
 	friend TriSparseMatrix<ElemType> operator +
-    (const TriSparseMatrix<ElemType> &a,const TriSparseMatrix<ElemType> &b)
+	(const TriSparseMatrix<ElemType> &a,const TriSparseMatrix<ElemType> &b)
 	{
 		if(a.rows!=b.rows || a.cols!=b.cols)
-			throw Error("è¡Œåˆ—æ•°ä¸ç›¸ç­‰ï¼Œæ— æ³•ç›¸åŠ ï¼");
+			throw Error("ĞĞÁĞÊı²»ÏàµÈ£¬ÎŞ·¨Ïà¼Ó£¡");
 		TriSparseMatrix<ElemType> s(a.rows, b.cols);
-		s=a;
-		Triple<ElemType> *p=b.triElems;
+		Triple<ElemType> *pa=a.triElems,*pb=b.triElems;
 		ElemType v;
 		for(int i=0;i<a.num;i++)
 		{
-			s.GetElem(p[i].row,p[i].col,v);
-			s.SetElem(p[i].row,p[i].col,v+p[i].value);
+			s.GetElem(pa[i].row,pa[i].col,v);
+			s.SetElem(pa[i].row,pa[i].col,v+pa[i].value);
+		}
+		for(int i=0;i<a.num;i++)
+		{
+			s.GetElem(pb[i].row,pb[i].col,v);
+			s.SetElem(pb[i].row,pb[i].col,v+pb[i].value);
 		}
 		/*int a_count=0,b_count=0;
 		while(a_count<a.num || b_count<b.num)
@@ -76,134 +80,134 @@ public:
 	}
 };
 
-// ç¨€ç–çŸ©é˜µä¸‰å…ƒç»„é¡ºåºè¡¨ç±»çš„å®ç°éƒ¨åˆ†
+// Ï¡Êè¾ØÕóÈıÔª×éË³Ğò±íÀàµÄÊµÏÖ²¿·Ö
 template <class ElemType>
 TriSparseMatrix<ElemType>::TriSparseMatrix(int r, int c, int size)
-// æ“ä½œç»“æœï¼š æ„é€ ä¸€ä¸ªrè¡Œcåˆ—éé›¶å…ƒç´ æœ€å¤§ä¸ªæ•°ä¸ºsizeçš„ç©ºç¨€ç–çŸ©é˜µ
+// ²Ù×÷½á¹û£º ¹¹ÔìÒ»¸örĞĞcÁĞ·ÇÁãÔªËØ×î´ó¸öÊıÎªsizeµÄ¿ÕÏ¡Êè¾ØÕó
 {
 	if (r < 1 || c < 1)							
-		throw Error("è¡Œæ•°æˆ–åˆ—æ•°æ— æ•ˆ!");	// æŠ›å‡ºå¼‚å¸¸
-	maxSize = size;						// éé›¶å…ƒç´ æœ€å¤§ä¸ªæ•°
-	rows = r;							// è¡Œæ•°
-	cols = c;							// åˆ—æ•°
-	num = 0;							// éé›¶å…ƒç´ ä¸ªæ•°
-	triElems = new Triple<ElemType>[maxSize];	// åˆ†é…å­˜å‚¨ç©ºé—´
+		throw Error("ĞĞÊı»òÁĞÊıÎŞĞ§!");	// Å×³öÒì³£
+	maxSize = size;						// ·ÇÁãÔªËØ×î´ó¸öÊı
+	rows = r;							// ĞĞÊı
+	cols = c;							// ÁĞÊı
+	num = 0;							// ·ÇÁãÔªËØ¸öÊı
+	triElems = new Triple<ElemType>[maxSize];	// ·ÖÅä´æ´¢¿Õ¼ä
 } 
 
 template <class ElemType>
 TriSparseMatrix<ElemType>::~TriSparseMatrix()
-// æ“ä½œç»“æœï¼šç¨€ç–çŸ©é˜µæ‰€å ç”¨ç©ºé—´
+// ²Ù×÷½á¹û£ºÏ¡Êè¾ØÕóËùÕ¼ÓÃ¿Õ¼ä
 {
-	if (triElems != NULL) delete []triElems; // é‡Šæ”¾å­˜å‚¨ç©ºé—´
+	if (triElems != NULL) delete []triElems; // ÊÍ·Å´æ´¢¿Õ¼ä
 }
 
 template <class ElemType>
 int TriSparseMatrix<ElemType>::GetRows() const
-// æ“ä½œç»“æœï¼šè¿”å›ç¨€ç–çŸ©é˜µè¡Œæ•°
+// ²Ù×÷½á¹û£º·µ»ØÏ¡Êè¾ØÕóĞĞÊı
 {
-	return rows;					// è¿”å›è¡Œæ•°
+	return rows;					// ·µ»ØĞĞÊı
 }
 
 template <class ElemType>
 int TriSparseMatrix<ElemType>::GetCols() const
-// æ“ä½œç»“æœï¼šè¿”å›ç¨€ç–çŸ©é˜µåˆ—æ•°
+// ²Ù×÷½á¹û£º·µ»ØÏ¡Êè¾ØÕóÁĞÊı
 {
-	return cols;					// è¿”å›åˆ—æ•°
+	return cols;					// ·µ»ØÁĞÊı
 }
 
 template <class ElemType>
 int TriSparseMatrix<ElemType>::GetNum() const
-// æ“ä½œç»“æœï¼šè¿”å›ç¨€ç–çŸ©é˜µéé›¶å…ƒä¸ªæ•°
+// ²Ù×÷½á¹û£º·µ»ØÏ¡Êè¾ØÕó·ÇÁãÔª¸öÊı
 {
-	return num;						// è¿”å›éé›¶å…ƒä¸ªæ•°
+	return num;						// ·µ»Ø·ÇÁãÔª¸öÊı
 }
 
 template <class ElemType>
 Status TriSparseMatrix<ElemType>::SetElem(int r, int c, const ElemType &v)
-// æ“ä½œç»“æœï¼šå¦‚æœä¸‹æ ‡èŒƒå›´é”™,åˆ™è¿”å›RANGE_ERROR,å¦‚æœæº¢å‡º,åˆ™è¿”å›OVER_FLOW,å¦åˆ™è¿”
-//	å›SUCCESS
+// ²Ù×÷½á¹û£ºÈç¹ûÏÂ±ê·¶Î§´í,Ôò·µ»ØRANGE_ERROR,Èç¹ûÒç³ö,Ôò·µ»ØOVER_FLOW,·ñÔò·µ
+//	»ØSUCCESS
 {
 	if (r >= rows || c >= cols || r < 0 || c < 0)
-		return RANGE_ERROR;					// ä¸‹æ ‡èŒƒå›´é”™
+		return RANGE_ERROR;					// ÏÂ±ê·¶Î§´í
 	
-	int i, j;								// å·¥ä½œå˜é‡
+	int i, j;								// ¹¤×÷±äÁ¿
 	for (j = num - 1; j >= 0 && 
-		(r < triElems[j].row || r == triElems[j].row && c < triElems[j].col); j--);// æŸ¥æ‰¾ä¸‰å…ƒç»„ä½ç½®
+		(r < triElems[j].row || r == triElems[j].row && c < triElems[j].col); j--);// ²éÕÒÈıÔª×éÎ»ÖÃ
 
-	if (j >= 0 && triElems[j].row == r && triElems[j].col == c)	{	// æ‰¾åˆ°ä¸‰å…ƒç»„
-		if (v == 0)	{	// åˆ é™¤ä¸‰å…ƒç»„
+	if (j >= 0 && triElems[j].row == r && triElems[j].col == c)	{	// ÕÒµ½ÈıÔª×é
+		if (v == 0)	{	// É¾³ıÈıÔª×é
 			for (i = j + 1; i < num; i++)
-				triElems[i - 1] = triElems[i];	// å‰ç§»ä»j+1å¼€å§‹çš„ä¸‰å…ƒç»„
-			num--;								// åˆ é™¤ä¸‰å…ƒç»„å,éé›¶å…ƒä¸ªæ•°è‡ªå‡1
+				triElems[i - 1] = triElems[i];	// Ç°ÒÆ´Ój+1¿ªÊ¼µÄÈıÔª×é
+			num--;								// É¾³ıÈıÔª×éºó,·ÇÁãÔª¸öÊı×Ô¼õ1
 		}
-		else	// ä¿®æ”¹å…ƒç´ å€¼
+		else	// ĞŞ¸ÄÔªËØÖµ
 			triElems[j].value = v;
-		return SUCCESS;						// æˆåŠŸ
+		return SUCCESS;						// ³É¹¦
 	}
 	else if (v != 0)	{	
-		if (num < maxSize)		{	// å°†ä¸‰å…ƒç»„(r, c, v)æ’å…¥åˆ°ä¸‰å…ƒç»„è¡¨ä¸­
-			for (i = num - 1; i > j; i--)	// åç§»å…ƒç´ 	
+		if (num < maxSize)		{	// ½«ÈıÔª×é(r, c, v)²åÈëµ½ÈıÔª×é±íÖĞ
+			for (i = num - 1; i > j; i--)	// ºóÒÆÔªËØ	
 				triElems[i + 1] = triElems[i];
-			// j + 1ä¸ºç©ºå‡ºçš„æ’å…¥ä½ç½®
-			triElems[j + 1].row = r;		// è¡Œ
-			triElems[j + 1].col = c;		// åˆ—
-			triElems[j + 1].value = v;		// éé›¶å…ƒç´ å€¼
-			num++;							// æ’å…¥ä¸‰å…ƒç»„å,éé›¶å…ƒä¸ªæ•°è‡ªåŠ 1
-			return SUCCESS;					// æˆåŠŸ
+			// j + 1Îª¿Õ³öµÄ²åÈëÎ»ÖÃ
+			triElems[j + 1].row = r;		// ĞĞ
+			triElems[j + 1].col = c;		// ÁĞ
+			triElems[j + 1].value = v;		// ·ÇÁãÔªËØÖµ
+			num++;							// ²åÈëÈıÔª×éºó,·ÇÁãÔª¸öÊı×Ô¼Ó1
+			return SUCCESS;					// ³É¹¦
 		}
-		else	// æº¢å‡º
-			return OVER_FLOW;				// æº¢å‡ºæ—¶è¿”å›OVER_FLOW
+		else	// Òç³ö
+			return OVER_FLOW;				// Òç³öÊ±·µ»ØOVER_FLOW
 	}
-	return SUCCESS;							// æˆåŠŸ
+	return SUCCESS;							// ³É¹¦
 }
 
 template <class ElemType>
 Status TriSparseMatrix<ElemType>::GetElem(int r, int c, ElemType &v)
-// æ“ä½œç»“æœï¼šå¦‚æœä¸‹æ ‡èŒƒå›´é”™,åˆ™è¿”å›RANGE_ERROR,å¦åˆ™è¿”å›SUCCESS,å¹¶ç”¨vè¿”å›æŒ‡å®šä½ç½®å…ƒç´ å€¼
+// ²Ù×÷½á¹û£ºÈç¹ûÏÂ±ê·¶Î§´í,Ôò·µ»ØRANGE_ERROR,·ñÔò·µ»ØSUCCESS,²¢ÓÃv·µ»ØÖ¸¶¨Î»ÖÃÔªËØÖµ
 {
 	if (r >= rows || c >= cols || r < 0 || c < 0)
-		return RANGE_ERROR;			// ä¸‹æ ‡èŒƒå›´é”™
+		return RANGE_ERROR;			// ÏÂ±ê·¶Î§´í
 
-	int j;							// å·¥ä½œå˜é‡
+	int j;							// ¹¤×÷±äÁ¿
 
 	
 	for (j = num - 1; j >= 0 && 
-		(r < triElems[j].row || r == triElems[j].row && c < triElems[j].col); j--);// æŸ¥æ‰¾æŒ‡å®šä½ç½®çš„ä¸‰å…ƒç»„
+		(r < triElems[j].row || r == triElems[j].row && c < triElems[j].col); j--);// ²éÕÒÖ¸¶¨Î»ÖÃµÄÈıÔª×é
 	
-	if (j >= 0 && triElems[j].row == r && triElems[j].col == c)	// æ‰¾åˆ°ä¸‰å…ƒç»„
-		v = triElems[j].value;		// ç”¨vè¿”å›æŒ‡å®šä½ç½®å…ƒç´ å€¼
-	else	// æœªæ‰¾åˆ°ä¸‰å…ƒç»„
-		v = 0;						// æœªæ‰¾åˆ°ä¸‰å…ƒç»„,è¡¨ç¤º0å…ƒç´ å€¼
-	return SUCCESS;					// æˆåŠŸ
+	if (j >= 0 && triElems[j].row == r && triElems[j].col == c)	// ÕÒµ½ÈıÔª×é
+		v = triElems[j].value;		// ÓÃv·µ»ØÖ¸¶¨Î»ÖÃÔªËØÖµ
+	else	// Î´ÕÒµ½ÈıÔª×é
+		v = 0;						// Î´ÕÒµ½ÈıÔª×é,±íÊ¾0ÔªËØÖµ
+	return SUCCESS;					// ³É¹¦
 }
 
 template <class ElemType>
 TriSparseMatrix<ElemType>::TriSparseMatrix(const TriSparseMatrix<ElemType> &copy)
-// æ“ä½œç»“æœï¼šç”±ç¨€ç–çŸ©é˜µcopyæ„é€ æ–°ç¨€ç–çŸ©é˜µâ€”â€”å¤åˆ¶æ„é€ å‡½æ•°
+// ²Ù×÷½á¹û£ºÓÉÏ¡Êè¾ØÕócopy¹¹ÔìĞÂÏ¡Êè¾ØÕó¡ª¡ª¸´ÖÆ¹¹Ôìº¯Êı
 {
-	maxSize = copy.maxSize;							// æœ€å¤§éé›¶å…ƒç´ ä¸ªæ•°
-	triElems = new Triple<ElemType>[maxSize];		// åˆ†é…å­˜å‚¨ç©ºé—´
-	rows = copy.rows;								// å¤åˆ¶è¡Œæ•°
-	cols = copy.cols;								// å¤åˆ¶åˆ—æ•°
-	num = copy.num;									// å¤åˆ¶éé›¶å…ƒç´ ä¸ªæ•°
-	triElems = new Triple<ElemType>[maxSize];		// ä¸ºä¸‰å…ƒç»„åˆ†é…å­˜å‚¨ç©ºé—´
-	for (int i = 0; i < num; i++)	// å¤åˆ¶ä¸‰å…ƒç»„
+	maxSize = copy.maxSize;							// ×î´ó·ÇÁãÔªËØ¸öÊı
+	triElems = new Triple<ElemType>[maxSize];		// ·ÖÅä´æ´¢¿Õ¼ä
+	rows = copy.rows;								// ¸´ÖÆĞĞÊı
+	cols = copy.cols;								// ¸´ÖÆÁĞÊı
+	num = copy.num;									// ¸´ÖÆ·ÇÁãÔªËØ¸öÊı
+	triElems = new Triple<ElemType>[maxSize];		// ÎªÈıÔª×é·ÖÅä´æ´¢¿Õ¼ä
+	for (int i = 0; i < num; i++)	// ¸´ÖÆÈıÔª×é
 		triElems[i] = copy.triElems[i];
 }
 
 template <class ElemType>
 TriSparseMatrix<ElemType> &TriSparseMatrix<ElemType>::operator =(const TriSparseMatrix<ElemType> &copy)
-// æ“ä½œç»“æœï¼šå°†ç¨€ç–çŸ©é˜µcopyèµ‹å€¼ç»™å½“å‰ç¨€ç–çŸ©é˜µâ€”â€”èµ‹å€¼è¿ç®—ç¬¦é‡è½½
+// ²Ù×÷½á¹û£º½«Ï¡Êè¾ØÕócopy¸³Öµ¸øµ±Ç°Ï¡Êè¾ØÕó¡ª¡ª¸³ÖµÔËËã·ûÖØÔØ
 {
 	if (&copy != this)	{
-		maxSize = copy.maxSize;						// æœ€å¤§éé›¶å…ƒç´ ä¸ªæ•°
-		if (triElems != NULL) delete []triElems;	// é‡Šæ”¾å­˜å‚¨ç©ºé—´
-		triElems = new Triple<ElemType>[maxSize];	// åˆ†é…å­˜å‚¨ç©ºé—´
-		rows = copy.rows;							// å¤åˆ¶è¡Œæ•°
-		cols = copy.cols;							// å¤åˆ¶åˆ—æ•°
-		num = copy.num;								// å¤åˆ¶éé›¶å…ƒç´ ä¸ªæ•°
+		maxSize = copy.maxSize;						// ×î´ó·ÇÁãÔªËØ¸öÊı
+		if (triElems != NULL) delete []triElems;	// ÊÍ·Å´æ´¢¿Õ¼ä
+		triElems = new Triple<ElemType>[maxSize];	// ·ÖÅä´æ´¢¿Õ¼ä
+		rows = copy.rows;							// ¸´ÖÆĞĞÊı
+		cols = copy.cols;							// ¸´ÖÆÁĞÊı
+		num = copy.num;								// ¸´ÖÆ·ÇÁãÔªËØ¸öÊı
 
-		for (int i = 0; i < num; i++)	// å¤åˆ¶ä¸‰å…ƒç»„
+		for (int i = 0; i < num; i++)	// ¸´ÖÆÈıÔª×é
 			triElems[i] = copy.triElems[i];
 	}
 	return *this;
@@ -211,7 +215,7 @@ TriSparseMatrix<ElemType> &TriSparseMatrix<ElemType>::operator =(const TriSparse
 
 template<class ElemType>
 void TriSparseMatrix<ElemType>::SimpleTranspose(TriSparseMatrix<ElemType> &b)
-// æ“ä½œç»“æœï¼šç¨€ç–çŸ©é˜µçš„ç®€å•è½¬ç½®ç®—æ³•ï¼Œç»“æœæ”¾åœ¨ä¸‰å…ƒç»„é¡ºåºè¡¨bä¸­ 
+// ²Ù×÷½á¹û£ºÏ¡Êè¾ØÕóµÄ¼òµ¥×ªÖÃËã·¨£¬½á¹û·ÅÔÚÈıÔª×éË³Ğò±íbÖĞ 
 {
 	b.rows = cols;
 	b.cols = rows;
@@ -221,9 +225,9 @@ void TriSparseMatrix<ElemType>::SimpleTranspose(TriSparseMatrix<ElemType> &b)
 	b.triElems = new Triple<ElemType>[b.maxSize];
 
 	if (b.num > 0)	{
-		int i = 0;						// ç¨€ç–çŸ©é˜µbçš„ä¸‹ä¸€ä¸ªä¸‰å…ƒç»„çš„å­˜æ”¾ä½ç½®
+		int i = 0;						// Ï¡Êè¾ØÕóbµÄÏÂÒ»¸öÈıÔª×éµÄ´æ·ÅÎ»ÖÃ
 		for (int col = 0; col < cols; col++)	
-			for (int j = 0; j < num; j++)	// æŸ¥æ‰¾açŸ©é˜µä¸­ç¬¬colåˆ—çš„ä¸‰å…ƒç»„
+			for (int j = 0; j < num; j++)	// ²éÕÒa¾ØÕóÖĞµÚcolÁĞµÄÈıÔª×é
 				if (triElems[j].col == col)	{
 					b.triElems[i].row = triElems[j].col;
 					b.triElems[i].col = triElems[j].row;
@@ -235,7 +239,7 @@ void TriSparseMatrix<ElemType>::SimpleTranspose(TriSparseMatrix<ElemType> &b)
 
 template<class ElemType>
 void TriSparseMatrix<ElemType>::FastTranspose(TriSparseMatrix<ElemType> &b)
-// æ“ä½œç»“æœï¼šç¨€ç–çŸ©é˜µçš„å¿«é€Ÿè½¬ç½®ç®—æ³•ï¼Œç»“æœæ”¾åœ¨ä¸‰å…ƒç»„é¡ºåºè¡¨bä¸­ 
+// ²Ù×÷½á¹û£ºÏ¡Êè¾ØÕóµÄ¿ìËÙ×ªÖÃËã·¨£¬½á¹û·ÅÔÚÈıÔª×éË³Ğò±íbÖĞ 
 {
 	b.rows = cols;
 	b.cols = rows;
@@ -244,27 +248,27 @@ void TriSparseMatrix<ElemType>::FastTranspose(TriSparseMatrix<ElemType> &b)
 	delete []b.triElems;
 	b.triElems = new Triple<ElemType>[b.maxSize];
 
-	int *cNum = new int[cols + 1];	// å­˜æ”¾åŸçŸ©é˜µä¸­æ¯ä¸€åˆ—çš„éé›¶å…ƒä¸ªæ•°
-	int *cPos = new int[cols + 1];	// å­˜æ”¾åŸçŸ©é˜µä¸­æ¯ä¸€åˆ—çš„ç¬¬ä¸€ä¸ªéé›¶å…ƒåœ¨bä¸­çš„å­˜å‚¨ä½ç½®
+	int *cNum = new int[cols + 1];	// ´æ·ÅÔ­¾ØÕóÖĞÃ¿Ò»ÁĞµÄ·ÇÁãÔª¸öÊı
+	int *cPos = new int[cols + 1];	// ´æ·ÅÔ­¾ØÕóÖĞÃ¿Ò»ÁĞµÄµÚÒ»¸ö·ÇÁãÔªÔÚbÖĞµÄ´æ´¢Î»ÖÃ
 	int col;
 	int i;			        
 
 	if (b.num > 0)	{
-		for (col = 0; col < cols; col++) cNum[col] = 0;	// åˆå§‹åŒ–cNum
+		for (col = 0; col < cols; col++) cNum[col] = 0;	// ³õÊ¼»¯cNum
 		for (i = 0; i < num; i++)
-			++cNum[triElems[i].col];		// ç»Ÿè®¡åŸçŸ©é˜µä¸­æ¯ä¸€åˆ—çš„éé›¶å…ƒä¸ªæ•°
-		cPos[0] = 0;						// ç¬¬ä¸€åˆ—çš„ç¬¬ä¸€ä¸ªéé›¶å…ƒåœ¨bå­˜å‚¨çš„èµ·å§‹ä½ç½®
-		for (col = 1; col < cols; col++)	// å¾ªç¯æ±‚æ¯ä¸€åˆ—çš„ç¬¬ä¸€ä¸ªéé›¶å…ƒåœ¨bå­˜å‚¨çš„èµ·å§‹ä½ç½®
+			++cNum[triElems[i].col];		// Í³¼ÆÔ­¾ØÕóÖĞÃ¿Ò»ÁĞµÄ·ÇÁãÔª¸öÊı
+		cPos[0] = 0;						// µÚÒ»ÁĞµÄµÚÒ»¸ö·ÇÁãÔªÔÚb´æ´¢µÄÆğÊ¼Î»ÖÃ
+		for (col = 1; col < cols; col++)	// Ñ­»·ÇóÃ¿Ò»ÁĞµÄµÚÒ»¸ö·ÇÁãÔªÔÚb´æ´¢µÄÆğÊ¼Î»ÖÃ
 			cPos[col] = cPos[col - 1] + cNum[col - 1];	
 
-		for (i = 0; i < num; i++){	// å¾ªç¯éå†åŸçŸ©é˜µçš„ä¸‰å…ƒç»„
+		for (i = 0; i < num; i++){	// Ñ­»·±éÀúÔ­¾ØÕóµÄÈıÔª×é
 			int j = cPos[triElems[i].col];	
-				// ç”¨äºè¡¨ç¤ºbå½“å‰åˆ—çš„ä¸‹ä¸€ä¸ªéé›¶å…ƒä¸‰å…ƒç»„çš„å­˜å‚¨ä½ç½®
+				// ÓÃÓÚ±íÊ¾bµ±Ç°ÁĞµÄÏÂÒ»¸ö·ÇÁãÔªÈıÔª×éµÄ´æ´¢Î»ÖÃ
 			b.triElems[j].row = triElems[i].col;
 			b.triElems[j].col = triElems[i].row;
 			b.triElems[j].value = triElems[i].value;
 			++cPos[triElems[i].col];				
-				// bå½“å‰åˆ—çš„ä¸‹ä¸€ä¸ªéé›¶å…ƒä¸‰å…ƒç»„çš„å­˜å‚¨æ–°ä½ç½®
+				// bµ±Ç°ÁĞµÄÏÂÒ»¸ö·ÇÁãÔªÈıÔª×éµÄ´æ´¢ĞÂÎ»ÖÃ
 		}
 	}
 
