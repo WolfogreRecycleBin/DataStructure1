@@ -88,7 +88,6 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-Triple.h,166
-TestTriSparseMatrix.cpp,500
 Main.cpp,1426
-TriSparseMatrix.h,2252
+Triple.h,166
+TriSparseMatrix.h,3072
