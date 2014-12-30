@@ -37,17 +37,13 @@ public:
 		if(a.rows!=b.rows || a.cols!=b.cols)
 			throw Error("行列数不相等，无法相加！");
 		TriSparseMatrix<ElemType> s(a.rows, b.cols);
-		Triple<ElemType> *pa=a.triElems,*pb=b.triElems;
+		s=a;
+		Triple<ElemType> *p=b.triElems;
 		ElemType v;
 		for(int i=0;i<a.num;i++)
 		{
-			s.GetElem(pa[i].row,pa[i].col,v);
-			s.SetElem(pa[i].row,pa[i].col,v+pa[i].value);
-		}
-		for(int i=0;i<a.num;i++)
-		{
-			s.GetElem(pb[i].row,pb[i].col,v);
-			s.SetElem(pb[i].row,pb[i].col,v+pb[i].value);
+			s.GetElem(p[i].row,p[i].col,v);
+			s.SetElem(p[i].row,p[i].col,v+p[i].value);
 		}
 		/*int a_count=0,b_count=0;
 		while(a_count<a.num || b_count<b.num)
