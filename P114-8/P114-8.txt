@@ -1,9 +1,4 @@
-//Main.cpp
-#include <iostream>
-#include "SeqStack.h"
-using namespace std;
-
-//ÊéÉÏµÄµÝ¹éº¯Êý(ÓÐÐÞ¸Ä)
+//ä¹¦ä¸Šçš„é€’å½’å‡½æ•°(æœ‰ä¿®æ”¹)
 void test(int &sum)
 {
 	int x;
@@ -16,7 +11,7 @@ void test(int &sum)
 	}
 	cout<<sum<<" ";
 }
-//¸ÄÐ´Îª·ÇµÝ¹é
+//æ”¹å†™ä¸ºéžé€’å½’
 void test2(void)
 {
 	int x;
@@ -35,13 +30,4 @@ void test2(void)
 		x+=t;
 		cout<<x<<' ';
 	}
-}
-int main(void)
-{
-	int sum=0;
-	cout<<"µÝ¹é²âÊÔ:"<<endl;
-	test(sum);cout<<endl;
-	cout<<"·ÇµÝ¹é²âÊÔ:"<<endl;
-	test2();cout<<endl;
-	return 0;
 }

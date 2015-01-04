@@ -2,6 +2,7 @@
 #define __SQ_STACK_H__
 #include "Assistance.h"	// 辅助软件包
 
+//基于课本给的SeqStack.h做的修改,增加top2的定义和操作，部分操作省略注释了
 
 // 顺序栈模板类
 template<class ElemType>

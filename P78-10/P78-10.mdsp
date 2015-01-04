@@ -90,5 +90,5 @@ extraResourceOptions=
 [History]
 Assistance.h,1280
 Node.h,425
-LinkList.h,1565
-Main.cpp,290
+LinkList.h,1551
+Main.cpp,257

@@ -87,5 +87,7 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-SeqStack.h,1617
-Main.cpp,639
+SeqStack.h,957
+Assistance.h,0
+C:\MinGWStudio\MinGW\include\c++\3.4.2\iostream,2988
+Main.cpp,697

@@ -1,4 +1,3 @@
-//int Main.cpp
 #include "SeqStack.h"
 template<class ElemType>
 class BadQueue
@@ -43,19 +42,3 @@ public:
 		}
 	}
 };
-int main(void)
-{
-	BadQueue<int> bq;
-	bq.EnQueue(1);
-	bq.EnQueue(2);
-	bq.EnQueue(3);
-	bq.EnQueue(4);
-	bq.DelQueue();
-	bq.DelQueue();
-	bq.EnQueue(5);
-	bq.DelQueue();
-	bq.DelQueue();
-	bq.DelQueue();
-	return 0;
-}
-

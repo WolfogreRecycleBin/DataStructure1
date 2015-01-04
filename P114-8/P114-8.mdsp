@@ -87,6 +87,6 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-SeqStack.h,966
 Assistance.h,0
-Main.cpp,566
+SeqStack.h,966
+Main.cpp,477

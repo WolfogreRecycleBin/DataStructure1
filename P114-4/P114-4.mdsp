@@ -87,5 +87,5 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-SeqStack.h,3457
-Mian.cpp,167
+Mian.cpp,281
+SeqStack.h,224

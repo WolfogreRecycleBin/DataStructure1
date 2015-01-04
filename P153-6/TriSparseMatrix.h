@@ -37,42 +37,58 @@ public:
 		if(a.rows!=b.rows || a.cols!=b.cols)
 			throw Error("行列数不相等，无法相加！");
 		TriSparseMatrix<ElemType> s(a.rows, b.cols);
-		s=a;
-		Triple<ElemType> *p=b.triElems;
-		ElemType v;
-		for(int i=0;i<a.num;i++)
+		
+		//高效率写法
+		int ai=0,bi=0;
+		while(ai<a.num || bi<b.num)
 		{
-			s.GetElem(p[i].row,p[i].col,v);
-			s.SetElem(p[i].row,p[i].col,v+p[i].value);
+			//a读完了
+			if(!(ai<a.num))
+			{
+				s.triElems[s.num++]=b.triElems[bi++];
+				continue;
+			}
+			//b读完了
+			if(!(bi<b.num))
+			{
+				s.triElems[s.num++]=a.triElems[ai++];
+				continue;
+			}
+			//a,b没读完，a,b坐标相等
+			if(a.triElems[ai].row == b.triElems[bi].row && a.triElems[ai].col == b.triElems[bi].col)
+			{
+				if(a.triElems[ai].value+b.triElems[bi].value != 0)
+				{
+					s.triElems[s.num]=a.triElems[ai];
+					s.triElems[s.num].value+=b.triElems[bi].value;
+					s.num++;
+				}
+				ai++;
+				bi++;
+				continue;
+			}
+			//a,b没读完，a坐标靠前
+			if(a.triElems[ai].row < b.triElems[bi].row || (a.triElems[ai].row == b.triElems[bi].row && a.triElems[ai].col < b.triElems[bi].col))
+			{
+				s.triElems[s.num++]=a.triElems[ai++];
+				continue;
+			}
+			//其他情况:a,b没读完，b坐标靠前
+			s.triElems[s.num++]=b.triElems[bi++];
 		}
-		/*int a_count=0,b_count=0;
-		while(a_count<a.num || b_count<b.num)
-		{
-			if(pa->row==pb->row && pa->col==pb->col)
-			{
-				if(pa->value+pb->value)
-					s.SetElem(pa->row,pa->col,pa->value+pb->value);
-				pa++;a_count++;
-				pb++;b_count++;
-			}
-			else
-			{
-				if(a_count<a.num && (pa->row<pb->row || pa->row==pb->row && pa->col < pb->col))
-				{
-					s.SetElem(pa->row,pa->col,pa->value);
-					pa++;a_count++;
-				}
-				else
-				{
-					if(b_count<b.num)
-					{
-						s.SetElem(pb->row,pb->col,pb->value);
-						pb++;b_count++;
-					}
-				}
-			}
-		}*/
 		return s;
+
+		//另一种写法:利用已有的GetElem(),SetElem()函数,极其简单，但效率稍低
+		/*
+		s=a;
+		ElemType v;
+		for(int i=0;i<b.num;i++)
+		{
+			s.GetElem(b.triElems[i].row,b.triElems[i].col,v);
+			s.SetElem(b.triElems[i].row,b.triElems[i].col,v+b.triElems[i].value);
+		}
+		return s;
+		*/
 	}
 };
 

@@ -36,7 +36,7 @@ SeqStack<ElemType>::SeqStack(int size)
 // 操作结果：构造一个最大容量为size的空栈
 {
 	maxSize = size;						// 栈的最大容量
-	if (elems != NULL) delete []elems;	// 释放已有存储空间
+	//if (elems != NULL) delete []elems;	// 释放已有存储空间
 	elems = new ElemType[maxSize];		// 分配新的存储空间
 	top = -1;	
 }

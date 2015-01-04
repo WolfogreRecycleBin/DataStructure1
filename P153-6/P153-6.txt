@@ -1,0 +1,60 @@
+//作业:重载运算符+
+friend TriSparseMatrix<ElemType> operator +
+(const TriSparseMatrix<ElemType> &a,const TriSparseMatrix<ElemType> &b)
+{
+	if(a.rows!=b.rows || a.cols!=b.cols)
+		throw Error("行列数不相等，无法相加！");
+	TriSparseMatrix<ElemType> s(a.rows, b.cols);
+	
+	//高效率写法
+	int ai=0,bi=0;
+	while(ai<a.num || bi<b.num)
+	{
+		//a读完了
+		if(!(ai<a.num))
+		{
+			s.triElems[s.num++]=b.triElems[bi++];
+			continue;
+		}
+		//b读完了
+		if(!(bi<b.num))
+		{
+			s.triElems[s.num++]=a.triElems[ai++];
+			continue;
+		}
+		//a,b没读完，a,b坐标相等
+		if(a.triElems[ai].row == b.triElems[bi].row && a.triElems[ai].col == b.triElems[bi].col)
+		{
+			if(a.triElems[ai].value+b.triElems[bi].value != 0)
+			{
+				s.triElems[s.num]=a.triElems[ai];
+				s.triElems[s.num].value+=b.triElems[bi].value;
+				s.num++;
+			}
+			ai++;
+			bi++;
+			continue;
+		}
+		//a,b没读完，a坐标靠前
+		if(a.triElems[ai].row < b.triElems[bi].row || (a.triElems[ai].row == b.triElems[bi].row && a.triElems[ai].col < b.triElems[bi].col))
+		{
+			s.triElems[s.num++]=a.triElems[ai++];
+			continue;
+		}
+		//其他情况:a,b没读完，b坐标靠前
+		s.triElems[s.num++]=b.triElems[bi++];
+	}
+	return s;
+
+	//另一种写法:利用已有的GetElem(),SetElem()函数,极其简单，但效率稍低
+	/*
+	s=a;
+	ElemType v;
+	for(int i=0;i<b.num;i++)
+	{
+		s.GetElem(b.triElems[i].row,b.triElems[i].col,v);
+		s.SetElem(b.triElems[i].row,b.triElems[i].col,v+b.triElems[i].value);
+	}
+	return s;
+	*/
+}
