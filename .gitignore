@@ -4,3 +4,6 @@ Debug/
 # 应用于cl编译器
 *.exe
 *.obj
+
+# 应对压缩文件
+*.rar
