@@ -1,4 +1,4 @@
-#include "InThreadBinaryTree.h"		  // 中序线索二叉树类
+#include "PreThreadBinaryTree.h"		  // 中序线索二叉树类
 
 int main(void)
 {
@@ -16,15 +16,15 @@ int main(void)
 	cout << endl;
 	system("PAUSE");	
 
-	cout << "中序索化后的线索二叉树:" << endl;
-	InThreadBinTree<char> thrBt(bt);
+	cout << "先序索化后的线索二叉树:" << endl;
+	PreThreadBinTree<char> thrBt(bt);
 	DisplayBTWithTreeShape<char>(thrBt);
 	system("PAUSE");	
 	
    	while (c != '0'){
         cout << endl << "1. 插入右孩子.";
         cout << endl << "2. 删除左子树.";
-        cout << endl << "3. 中序遍历.";
+        cout << endl << "3. 先序遍历.";
         cout << endl << "4. 显示二叉树.";
 		cout << endl << "0. 退出";
 		cout << endl << "选择功能(0~4):";
@@ -53,7 +53,7 @@ int main(void)
 			    break;
 	         case '3':
 				cout << endl;
-				thrBt.InOrder(Write<char>);
+				thrBt.PreOrder(Write<char>);
 				break;
 	         case '4':
 				cout << endl;

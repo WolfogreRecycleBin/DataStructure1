@@ -36,7 +36,7 @@ public:
 	void InsertRightChild(ThreadBinTreeNode<ElemType> *p, const ElemType &e);// 插入右孩子
 	void DeleteLeftChild(ThreadBinTreeNode<ElemType> *p);   // 删除p的左子树 
 
-	void InOrder(void (*Visit)(const ElemType &)) const;	// 二叉树的先序遍历	
+	void PreOrder(void (*Visit)(const ElemType &)) const;	// 二叉树的先序遍历	
 	PreThreadBinTree(const PreThreadBinTree<ElemType> &t);	// 复制构造函数
 	PreThreadBinTree<ElemType> &operator=(const PreThreadBinTree<ElemType>& t);
 		// 赋值运算符重载
@@ -74,8 +74,8 @@ void PreThreadBinTree<ElemType>::PreThreadHelp(ThreadBinTreeNode<ElemType> *p,
 
 		pre = p;						// 遍历下一结点时,p为下一结点的前驱
 
-		PreThreadHelp(p->leftChild, pre);// 线索化p的左子树
-		PreThreadHelp(p->rightChild, pre);// 线索化p的右子树
+		if(p->leftTag == 0) PreThreadHelp(p->leftChild, pre);// 线索化p的左子树
+		if(p->rightTag == 0) PreThreadHelp(p->rightChild, pre);// 线索化p的右子树
 	}
 }
 
@@ -127,14 +127,9 @@ template <class ElemType>
 ThreadBinTreeNode<ElemType> *PreThreadBinTree<ElemType>::GetNext(ThreadBinTreeNode<ElemType> *p) const
 // 操作结果：返回先序序列中p的后继结点
 {	
-    if (p->rightTag == 1)	    // 右指针为线索，后继为p->rightChild
-        p = p->rightChild;
-	else	{	                // 右指针为孩子，p右子树最左侧的结点为后继
- 		p = p->rightChild;		// p指向其右孩子	
-		while (p->leftTag == 0) 
-			p = p->leftChild;	// 查找原p右子树中最左侧的结点
-	}
-	return p;
+    if (p->leftTag == 0)	    // 右指针为线索，后继为p->rightChild
+        return p->leftChild;
+	return p->rightChild;		// p指向其右孩子	
 }
 
 
@@ -156,14 +151,7 @@ template <class ElemType>
 ThreadBinTreeNode<ElemType> *PreThreadBinTree<ElemType>::GetFirst() const
 // 操作结果：返回线索二叉树先序序列的第一个结点
 {	
-	if (root ==  NULL)
-       return  NULL;
-    else {
-       ThreadBinTreeNode<ElemType> *p = root;
-	   while (p->leftTag == 0)
-			p = p->leftChild;	
-	   return p;
-    }         
+	return root;        
 }
 
 template <class ElemType>
@@ -218,7 +206,7 @@ void PreThreadBinTree<ElemType>::DeleteLeftChild(ThreadBinTreeNode<ElemType> *p)
 // 初始条件：p非空，
 // 操作结果：删除p的左子树
 {
-	ThreadBinTreeNode<ElemType> *x, *q; 
+	ThreadBinTreeNode<ElemType>*q; 
   	if (p == NULL || p->leftTag != 0)	// p空，返回
 		return;
 	else 	{	
@@ -234,7 +222,7 @@ void PreThreadBinTree<ElemType>::DeleteLeftChild(ThreadBinTreeNode<ElemType> *p)
 }
 
 template <class ElemType>
-void PreThreadBinTree<ElemType>::InOrder(void (*Visit)(const ElemType &)) const
+void PreThreadBinTree<ElemType>::PreOrder(void (*Visit)(const ElemType &)) const
 // 操作结果：二叉树的先序遍历	
 {
 	ThreadBinTreeNode<ElemType> *p;	// 从根开始遍历

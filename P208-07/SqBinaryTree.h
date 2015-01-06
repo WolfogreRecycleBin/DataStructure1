@@ -80,8 +80,8 @@ public:
 		}
 		while(ai!=bi)
 		{
-			int a_generation=int(log(ai+1)/log(2));
-			int b_generation=int(log(bi+1)/log(2));
+			int a_generation=int(log(ai+1.0)/log(2.0));
+			int b_generation=int(log(bi+1.0)/log(2.0));
 			if(a_generation>b_generation) ai=(ai-1)/2;
 			else bi=(bi-1)/2;
 		}
