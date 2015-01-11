@@ -1,5 +1,5 @@
 [Project]
-name=C6-feidiguizhongxubianli
+name=heap
 type=0
 defaultConfig=0
 
@@ -26,7 +26,7 @@ optimizeLevel=0
 
 // linker
 libraryPath=
-outputFilename=Debug\C6-feidiguizhongxubianli.exe
+outputFilename=Debug\heap.exe
 libraries=
 extraLinkerOptions=
 ignoreStartupFile=0
@@ -64,7 +64,7 @@ optimizeLevel=2
 
 // linker
 libraryPath=
-outputFilename=Release\C6-feidiguizhongxubianli.exe
+outputFilename=Release\heap.exe
 libraries=
 extraLinkerOptions=
 ignoreStartupFile=0
@@ -80,17 +80,12 @@ resourceIncludeDirectory=
 extraResourceOptions=
 
 [Source]
-1=TestBinaryTree.cpp
+1=TestHeap.cpp
 [Header]
 1=Assistance.h
-2=BinTreeNode.h
-3=BinaryTree.h
-4=LinkQueue.h
-5=Node.h
-6=SeqStack.h
+2=Heap.h
 [Resource]
 [Other]
 [History]
-SeqStack.h,134
-TestBinaryTree.cpp,2367
-BinaryTree.h,3322
+Heap.h,301
+TestHeap.cpp,948
