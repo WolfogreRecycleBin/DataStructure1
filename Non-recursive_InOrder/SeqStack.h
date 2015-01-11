@@ -21,6 +21,12 @@ public:
 	bool IsEmpty() const;							// ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
 	void Clear();									// ½«Õ»Çå¿Õ
 	void Traverse(void (*Visit)(const ElemType &)) const;	// ±éÀúÕ»
+	void Traverse() const
+	{
+		for (int i = top; i >=0 ; i--) 
+			cout<<elems[i]->data<<" ";
+		cout<<endl;
+	}
 	Status Push(const ElemType e);				    // ÈëÕ»
 	Status Top(ElemType &e) const;				    // È¡¶¥ÔªËØ
 	Status Pop(ElemType &e);					    // ³öÕ»

@@ -69,6 +69,7 @@ public:
 	BinaryTree(BinTreeNode<ElemType> *r);			// 建立以r为根的二叉树
 	BinaryTree<ElemType> &operator=(const BinaryTree<ElemType>& t);
 		// 赋值运算符重载
+	#define DEBUG
 	void NewInOrder(void (*Visit)(const ElemType &)) const
 	{
 		SeqStack<BinTreeNode<ElemType> *> q;
@@ -78,12 +79,23 @@ public:
 			if(p)
 			{
 				q.Push(p);
+				#ifdef DEBUG
+					cout<<p->data<<"入栈:";
+					q.Traverse();
+				#endif
 				p=p->leftChild;
 			}
 			else
 			{
 				q.Pop(n);
+				#ifdef DEBUG
+					cout<<n->data<<"出栈:";
+					q.Traverse();
+				#endif
 				(*Visit)(n->data);
+				#ifdef DEBUG
+					cout<<n->data<<"被访问"<<endl;
+				#endif
 				p=n->rightChild;
 			}
 		}

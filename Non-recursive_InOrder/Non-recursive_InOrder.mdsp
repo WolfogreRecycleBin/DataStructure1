@@ -1,5 +1,5 @@
 [Project]
-name=C6-feidiguizhongxubianli
+name=Non-recursive_InOrder
 type=0
 defaultConfig=0
 
@@ -26,7 +26,7 @@ optimizeLevel=0
 
 // linker
 libraryPath=
-outputFilename=Debug\C6-feidiguizhongxubianli.exe
+outputFilename=Debug\Non-recursive_InOrder.exe
 libraries=
 extraLinkerOptions=
 ignoreStartupFile=0
@@ -64,7 +64,7 @@ optimizeLevel=2
 
 // linker
 libraryPath=
-outputFilename=Release\C6-feidiguizhongxubianli.exe
+outputFilename=Release\Non-recursive_InOrder.exe
 libraries=
 extraLinkerOptions=
 ignoreStartupFile=0
@@ -91,6 +91,6 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-SeqStack.h,134
-TestBinaryTree.cpp,2367
-BinaryTree.h,3322
+SeqStack.h,724
+TestBinaryTree.cpp,2350
+BinaryTree.h,3592
