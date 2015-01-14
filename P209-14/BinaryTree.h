@@ -29,15 +29,15 @@ void (*Visit)(const ElemType &)) const;	// 后序遍历以r为根的二叉树
 	BinTreeNode<ElemType> *Parent(BinTreeNode<ElemType> *r, 
 		const BinTreeNode<ElemType>*p) const;//在以r为根的二叉树中求p的双亲
 	//作业辅助:递归计算叶节点数
-	void friend CountLeafNode(BinTreeNode<ElemType> *node,int & leaf_node_count)
+	void CountLeafNode(const BinTreeNode<ElemType> *r,int & leaf_node_count) const
 	{
-		if(node->leftChild==NULL && node->rightChild==NULL)
+		if(r->leftChild==NULL && r->rightChild==NULL)
 		{
 			leaf_node_count++;
 			return;
 		}
-		if(node->leftChild) CountLeafNode(node->leftChild,leaf_node_count);
-		if(node->rightChild) CountLeafNode(node->rightChild,leaf_node_count);
+		if(r->leftChild) CountLeafNode(r->leftChild,leaf_node_count);
+		if(r->rightChild) CountLeafNode(r->rightChild,leaf_node_count);
 	}
 	
 public:
