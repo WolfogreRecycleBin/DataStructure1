@@ -1,15 +1,22 @@
 #include "Heap.h"
-
+#include <sstream>
+#include <string>
 int main()
 {
-	int a[12]={80,57,99,35,23,11,74,29,62,16};
-	Heap<int> ha(MIN,a,20,10);
+	int a[1000],n,size=0;
+	string str;
+	stringstream sstr;
+	cout<<"请输入用于构造堆的整数元素:"<<endl;
+	getline(cin,str);
+	sstr<<str;
+	while(sstr>>n)
+	{
+		a[size++]=n;
+	}
+	Heap<int> ha(a,size*2,size);
 	int e;
 	char c = 'x'; 
 	cout<<endl;
-	
-	if(ha.GetType()==MIN) cout << "最小堆序列为：" << endl;
-	else cout << "最大堆序列为：" << endl;
 	ha.Traverse(Write<int>);
 	cout << endl << endl;	
 
@@ -37,7 +44,7 @@ int main()
 				break;
 			case '4':
 				cout << endl;
-				ha.ReSetType();
+				ha.SetType();
 				ha.Traverse(Write<int>);
 				break;
 		}
