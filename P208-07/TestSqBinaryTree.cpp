@@ -86,6 +86,7 @@ int main(void)
 				char a,b,s;
 				cin>>a>>b;
 				if(bt.FindCommonAncestor(a,b,s)) cout<<"元素 "<<a<<" 和元素 "<<b<<" 的最近共同祖先为 "<<s<<endl;
+				else cout<<"元素 "<<a<<" 和元素 "<<b<<" 没有共同祖先"<<endl;
 				break;
 		}
 	}

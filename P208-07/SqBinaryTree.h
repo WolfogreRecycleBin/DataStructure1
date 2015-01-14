@@ -2,7 +2,6 @@
 #define __SQ_BINNARY_TREE_H__
 #include "Assistance.h"						// 辅助软件包
 #include "LinkQueue.h"						// 链队列
-#include <cmath>
 
 // 顺序二叉树类
 template <class ElemType>
@@ -78,11 +77,12 @@ public:
 			cout<<"找不到元素 "<<b<<endl;
 			return false;
 		}
+		if(ai==0 || bi==0) return false;
+		ai=(ai-1)/2;
+		bi=(bi-1)/2;
 		while(ai!=bi)
 		{
-			int a_generation=int(log(ai+1.0)/log(2.0));
-			int b_generation=int(log(bi+1.0)/log(2.0));
-			if(a_generation>b_generation) ai=(ai-1)/2;
+			if(ai>bi) ai=(ai-1)/2;
 			else bi=(bi-1)/2;
 		}
 		common_ancestor=elems[ai];

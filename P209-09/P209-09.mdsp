@@ -90,7 +90,7 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-TestBinaryTree.cpp,2395
-Assistance.h,0
 BinTreeNode.h,0
-BinaryTree.h,3700
+Assistance.h,0
+TestBinaryTree.cpp,2369
+BinaryTree.h,4328
