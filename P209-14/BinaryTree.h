@@ -31,6 +31,7 @@ void (*Visit)(const ElemType &)) const;	// 后序遍历以r为根的二叉树
 	//作业辅助:递归计算叶节点数
 	void CountLeafNode(const BinTreeNode<ElemType> *r,int & leaf_node_count) const
 	{
+		if(r==NULL) return;
 		if(r->leftChild==NULL && r->rightChild==NULL)
 		{
 			leaf_node_count++;
