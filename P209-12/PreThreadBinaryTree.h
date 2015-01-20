@@ -187,18 +187,14 @@ void PreThreadBinTree<ElemType>::InsertRightChild(ThreadBinTreeNode<ElemType> *p
   	if (p == NULL)	                // p空，返回
 		return;
 	else 	{
-		q=p;
-		if (p->leftTag == 0)	{ 
-           q = p->leftChild;
-           while (q->rightTag == 0 || q->leftTag == 0)
-		   {
-               if(q->rightTag == 0) q = q->rightChild;
-			   if(q->leftTag == 0) q = q->leftChild;
-		   }
+		x =  new ThreadBinTreeNode<ElemType>(e, p, p->rightChild, 1, p->rightTag);
+        // 生成元素值为e结点x
+		if (p->rightTag == 0)	{ 
+           q = p->rightChild;
+           while (q->leftTag == 0)
+               q = q->leftChild;
+           q->leftChild = x;
         }
-		x =  new ThreadBinTreeNode<ElemType>(e, q, q->rightChild, 1, p->rightTag);
-		q->rightChild = x;
-		if(x->rightChild->leftTag==1) x->rightChild->leftChild=x;
         p->rightChild = x;
         p->rightTag = 0;      
 		return;

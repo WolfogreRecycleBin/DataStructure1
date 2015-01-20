@@ -39,7 +39,7 @@ int main(void)
 			    else {
             		cout << endl << "输入插入元素的值:";
 			    	cin >> e;
-					thrBt.InsertRightChild(p, e);
+					thrBt.InsertRightChild(p, e);	// 插入左孩子
 			    }
 			    break;
            	case '2':
