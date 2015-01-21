@@ -92,8 +92,7 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-BinaryTree.h,256
-TestInThreadBinaryTree.cpp,359
-ThreadBinTreeNode.h,530
-C:\MinGWStudio\MinGW\include\c++\3.4.2\iostream,2988
-PreThreadBinaryTree.h,6392
+TestInThreadBinaryTree.cpp,1468
+BinaryTree.h,247
+ThreadBinTreeNode.h,498
+PreThreadBinaryTree.h,8192

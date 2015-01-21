@@ -20,6 +20,15 @@ protected:
 	ThreadBinTreeNode<ElemType> *CopyTreeHelp(ThreadBinTreeNode<ElemType> *t);	
 		// 复制线索二叉树
 	void DestroyHelp(ThreadBinTreeNode<ElemType> * &r);		// 销毁以r为根二叉树
+	ThreadBinTreeNode<ElemType> *GetPre(ThreadBinTreeNode<ElemType> *r) const
+	{
+		ThreadBinTreeNode<ElemType> *p,*pre=NULL;	// 从根开始遍历
+		for (p = GetFirst(); p != NULL; p = GetNext(p))	{
+			if(p==r) return pre;
+			pre=p;
+		}
+		return NULL;
+	}
 
 public:
 //  线索二叉树方法成员:
@@ -210,7 +219,7 @@ void PreThreadBinTree<ElemType>::DeleteLeftChild(ThreadBinTreeNode<ElemType> *p)
 // 初始条件：p非空，
 // 操作结果：删除p的左子树
 {
-	ThreadBinTreeNode<ElemType>*q; 
+	/*ThreadBinTreeNode<ElemType>*q; 
   	if (p == NULL || p->leftTag != 0)	// p空，返回
 		return;
 	else 	{	
@@ -222,7 +231,22 @@ void PreThreadBinTree<ElemType>::DeleteLeftChild(ThreadBinTreeNode<ElemType> *p)
         p->leftChild = q;
         p->leftTag = 1;      
 		return;
+	}*/
+	//求左子树最后一个节点
+	ThreadBinTreeNode<ElemType>*q; 
+  	if (p == NULL || p->leftTag != 0)	// p空，返回
+		return;
+	q = p->leftChild;
+	while (q->rightTag == 0 || q->leftTag == 0)
+	{
+		if(q->rightTag == 0) q = q->rightChild;
+		if(q->leftTag == 0) q = q->leftChild;
 	}
+	if(p->rightTag==1) p->rightChild=q->rightChild;
+	if(q->rightChild->leftTag==1) q->rightChild->leftChild=p;
+	DestroyHelp(p->leftChild);
+	p->leftTag=1;
+	p->leftChild=GetPre(p);
 }
 
 template <class ElemType>
